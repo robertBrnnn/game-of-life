@@ -53,6 +53,7 @@
                             <Specification-Title>${project.name}</Specification-Title>
                             <Specification-Version>${project.version}</Specification-Version>
                             <Implementation-Version>${BUILD_TAG}</Implementation-Version>
+                            <url>${BUILD_URL}</url>
                         </manifestEntries>
                     </archive>
                 </configuration>
