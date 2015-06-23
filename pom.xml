@@ -20,8 +20,13 @@
         <thucydides.version>0.9.268</thucydides.version>
         <jelastic.context>gameoflife</jelastic.context>
         <jelastic.environment>wakaleo</jelastic.environment>
-        <sonar.jacoco.itReportPath>${env.WORKSPACE}/target/jacoco.exec</sonar.jacoco.itReportPath>
+        <!--<sonar.jacoco.itReportPath>${env.WORKSPACE}/target/jacoco.exec</sonar.jacoco.itReportPath>
         <argLine>-Xmx128m</argLine>
+        Sonar -->
+		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+		<sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
+		<sonar.language>java</sonar.language>
     </properties>
 
     <scm>
@@ -96,7 +101,7 @@
                 </executions>
             </plugin>
             <!-- CODE COVERAGE -->
-            <plugin>
+            <!--<plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.7.2.201409121644</version>
@@ -116,7 +121,25 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
+            
+            <plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.6.0.201210061924</version>
+				<configuration>
+					<destFile>${sonar.jacoco.reportPath}</destFile>
+					<append>true</append>
+				</configuration>
+				<executions>
+					<execution>
+						<id>agent</id>
+						<goals>
+						    <goal>prepare-agent</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 
             <plugin>
                 <artifactId>maven-release-plugin</artifactId>
