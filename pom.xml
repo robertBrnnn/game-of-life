@@ -89,6 +89,7 @@
                             </includes>
                             <excludes>
                             	<exclude>**/pages/*.java</exclude>
+                        	</excludes>
                         </configuration>
                     </execution>
                 </executions>
