@@ -39,7 +39,7 @@ public class Universe {
 
         int maxRow = currentGridContent.getWidth();
         int maxColumn = currentGridContent.getHeight();
-        // TODO: simplify this code
+        
         for (int y = 0; y < maxRow; y++) {
             for (int x = 0; x < maxColumn; x++) {
                 Cell currentCell = currentGridContent.getCellAt(x, y);
