@@ -84,8 +84,11 @@
                         <configuration>
                             <skip>false</skip>
                             <includes>
+                            	<include>**/webtests/*.java</include>
                                 <include>%regex[.*integration.*]</include>
                             </includes>
+                            <excludes>
+                            	<exclude>**/pages/*.java</exclude>
                         </configuration>
                     </execution>
                 </executions>
