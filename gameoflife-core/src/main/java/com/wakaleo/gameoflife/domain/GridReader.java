@@ -18,6 +18,7 @@ public class GridReader {
     }
 
     private Cell[] splitIntoCells(final String row) {
+    	//TODO Dosomething useful here please
         char[] cellSymbols = row.trim().toCharArray();
         List<Cell> cellsInRow = new ArrayList<Cell>();
         for (char cellSymbol : cellSymbols) {
