@@ -20,12 +20,8 @@
         <thucydides.version>0.9.268</thucydides.version>
         <jelastic.context>gameoflife</jelastic.context>
         <jelastic.environment>wakaleo</jelastic.environment>
-        <!--<sonar.jacoco.itReportPath>${env.WORKSPACE}/target/jacoco.exec</sonar.jacoco.itReportPath>-->
+        <sonar.jacoco.itReportPath>${env.WORKSPACE}/target/jacoco.exec</sonar.jacoco.itReportPath>
         <argLine>-Xmx128m</argLine>
-        <!-- Lines added-->
-        <jacoco.out.path>${session.executionRootDirectory}/target</jacoco.out.path>
-    	<jacoco.out.file>jacoco.exec</jacoco.out.file>
-    	<sonar.jacoco.itReportPath>${env.WORKSPACE}/target/${jacoco.out.file}</sonar.jacoco.itReportPath>
     </properties>
 
     <scm>
@@ -119,39 +115,9 @@
                             <goal>report</goal>
                         </goals>
                     </execution>
-                    <!-- Lines added -->
-                    <execution>
-						<id>prepare-agent</id>
-						<goals>
-						    <goal>prepare-agent</goal>
-						</goals>
-						<configuration>
-					    	<destFile>${jacoco.out.path}/${jacoco.out.file}</destFile>
-					    	<propertyName>jacoco.agent.arg</propertyName>
-						</configuration>
-				    </execution>
-				    <!-- //lines added -->
                 </executions>
             </plugin>
-            <!-- Lines Added -->
-            <plugin>
-				<artifactId>maven-failsafe-plugin</artifactId>
-				<version>2.16</version>
-				<executions>
-				  <execution>
-				    <id>verify</id>
-				    <goals>
-				      <goal>integration-test</goal>
-				      <goal>verify</goal>
-				    </goals>
-				    <configuration>
-				      <argLine>${jacoco.agent.arg}</argLine>
-				    </configuration>
-				  </execution>
-				</executions>
-			  </plugin>
-			</plugins>
-			<!-- //Lines added -->
+
             <plugin>
                 <artifactId>maven-release-plugin</artifactId>
                 <version>2.5</version>
