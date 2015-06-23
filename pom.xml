@@ -20,6 +20,7 @@
         <jelastic.context>gameoflife</jelastic.context>
         <jelastic.environment>wakaleo</jelastic.environment>
         <sonar.jacoco.itReportPath>${env.WORKSPACE}/target/jacoco.exec</sonar.jacoco.itReportPath>
+        <argLine>-Xmx128m</argLine>
     </properties>
 
     <scm>
@@ -50,6 +51,7 @@
                 </configuration>
             </plugin>
             <plugin>
+            	<groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.11</version>
                 <configuration>
