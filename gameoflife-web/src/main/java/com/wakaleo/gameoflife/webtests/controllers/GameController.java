@@ -96,7 +96,7 @@ public class GameController {
                                      final int column,
                                      final HttpServletRequest request) {
         String cellName = "cell_" + row + "_" + column;
-        return (request.getParameter(cellName) != null);
+        return request.getParameter(cellName) != null;
     }
 
     private Random getRandomGenerator() {
