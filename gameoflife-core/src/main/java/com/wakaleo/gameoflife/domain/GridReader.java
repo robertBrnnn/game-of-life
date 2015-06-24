@@ -18,13 +18,11 @@ public class GridReader {
     }
 
     private Cell[] splitIntoCells(final String row) {
-        //TODO Things need to be done here.....
         char[] cellSymbols = row.trim().toCharArray();
         List<Cell> cellsInRow = new ArrayList<Cell>();
         for (char cellSymbol : cellSymbols) {
             Cell cell = Cell.fromSymbol(Character.toString(cellSymbol));
             if (cell == null) {
-                //Fix Me: there isn't a problem here
                 throw new IllegalArgumentException();
             }
             cellsInRow.add(cell);
