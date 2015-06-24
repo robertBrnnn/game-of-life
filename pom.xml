@@ -20,7 +20,7 @@
         <thucydides.version>0.9.268</thucydides.version>
         <jelastic.context>gameoflife</jelastic.context>
         <jelastic.environment>wakaleo</jelastic.environment>
-        <sonar.jacoco.itReportPath>${env.WORKSPACE}/target/jacoco.exec</sonar.jacoco.itReportPath>
+        <sonar.jacoco.ReportPath>${env.WORKSPACE}/target/jacoco.exec</sonar.jacoco.ReportPath>
         <argLine>-Xmx128m</argLine>
     </properties>
 
@@ -68,7 +68,7 @@
                         <configuration>
                             <skip>false</skip>
                             <includes>
-                                <include>**/When*.java</include><sonar.jacoco.itReportPath>${env.WORKSPACE}/target/${jacoco.out.file}</sonar.jacoco.itReportPath>
+                                <include>**/When*.java</include><sonar.jacoco.ReportPath>${env.WORKSPACE}/target/${jacoco.out.file}</sonar.jacoco.ReportPath>
                                 <include>**/*Test.java</include>
                             </includes>
                             <excludes>
