@@ -8,6 +8,14 @@ public enum Cell {
     private Cell(final String initialSymbol) {
         this.symbol = initialSymbol;
     }
+    //comments have been added
+    //comments have been added
+    //comments have been added
+    //comments have been added
+    //comments have been added
+    //comments have been added
+    //comments have been added
+    //comments have been added
 
     @Override
     public String toString() {

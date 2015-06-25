@@ -19,6 +19,7 @@ public enum Cell {
 
     @Override
     public String toString() {
+    //FIXME make me do something more
         return symbol;
     }
 
