@@ -136,6 +136,12 @@
 			<artifactId>maven-surefire-plugin</artifactId>
 			<version>2.12.1</version>
 			<configuration>
+				<properties>
+				    <property>
+				    	<name>listener</name>
+				    	<value>org.sonar.java.jacoco.JUnitListener</value>
+				    </property>
+				</properties>
 				<argLine>-Xmx1G -XX:MaxPermSize=512m -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled ${jacoco.agent.ut.arg}</argLine>
 				<includes>
 					<include>**/When*.java</include>
@@ -145,14 +151,6 @@
 					<exclude>%regex[.*integration.*]</exclude>
 				</excludes>
 			</configuration>
-			<executions>
-				<execution>
-					<id>unit-tests</id>
-					<goals>
-						<goal>test</goal>
-					</goals>
-				</execution>
-			</executions>
 			</plugin>
 			
 			<plugin>
@@ -160,6 +158,14 @@
 			<artifactId>maven-failsafe-plugin</artifactId>
 			<version>2.12.4</version>
 			<configuration>
+				<properties>
+				    <property>
+				    	<name>listener</name>
+				    	<value>org.sonar.java.jacoco.JUnitListener</value>
+				    </property>
+				</properties>
+				 <!-- Let's put failsafe reports with surefire to have access to tests failures/success reports in sonar -->
+				<reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
 				<argLine>-Xmx1G -XX:MaxPermSize=512m -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled ${jacoco.agent.it.arg}</argLine>
 				<includes>
 					<include>**/webtests/*.java</include>
@@ -171,8 +177,16 @@
 			</configuration>
 			<executions>
 				<execution>
+					<id>integration-test</id>
+					<phase>integration-test</phase>
 					<goals>
 						<goal>integration-test</goal>
+					</goals>
+				</execution>
+				<execution>
+					<id>verify</id>
+					<phase>verify</phase>
+					<goals>
 						<goal>verify</goal>
 					</goals>
 				</execution>
@@ -213,13 +227,6 @@
 						<propertyName>jacoco.agent.it.arg</propertyName>
 						<append>true</append>
 					</configuration>
-					</execution>
-					<execution>
-						<id>jacoco-site</id>
-						<phase>Post-Integration-test</phase>
-						<goals>
-							<goal>report</goal>
-						</goals>
 					</execution>
                 </executions>
             </plugin>
@@ -315,6 +322,12 @@
         </dependencies>
     </dependencyManagement>
     <dependencies>
+    	<dependency>
+			<groupId>org.codehaus.sonar-plugins.java</groupId>
+			<artifactId>sonar-jacoco-listeners</artifactId>
+			<version>1.4</version>
+			<scope>test</scope>
+		</dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
